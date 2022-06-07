@@ -1,0 +1,49 @@
+:root {
+  --background: #fff;
+  --button: #6558f5;
+  --background-header: #8dd7cf;
+  --border: #9eadba;
+  --text-color: #293845;
+  --notification: #fbe192;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+@media (max-width: 460px) {
+  html {
+    font-size: 81.25%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text-color);
+  background: var(--background);
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font: 400 1rem "Roboto", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
