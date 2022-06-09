@@ -44,45 +44,45 @@ export default function Checkout() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr className={styles.divisionTable}>
                 <td>
-                  <div>
-                    <RiImage2Fill size={20} color="#9eadba" />
+                  <div className={styles.containerPicture}>
+                    <RiImage2Fill className={styles.pictureIcon} />
                   </div>
                 </td>
                 <td>Nome do Filme</td>
                 <td>1</td>
                 <td>R$ 9,99</td>
                 <td>
-                  <RiDeleteBin7Fill size={20} color="#4b5c6b" />
+                  <RiDeleteBin7Fill className={styles.deleteIcon} />
                 </td>
               </tr>
 
-              <tr>
+              <tr className={styles.divisionTable}>
                 <td>
-                  <div>
-                    <RiImage2Fill size={20} color="#9eadba" />
+                  <div className={styles.containerPicture}>
+                    <RiImage2Fill className={styles.pictureIcon} />
                   </div>
                 </td>
                 <td>Nome do Filme</td>
                 <td>1</td>
                 <td>R$ 9,99</td>
                 <td>
-                  <RiDeleteBin7Fill size={20} color="#4b5c6b" />
+                  <RiDeleteBin7Fill className={styles.deleteIcon} />
                 </td>
               </tr>
 
-              <tr>
+              <tr className={styles.divisionTable}>
                 <td>
-                  <div>
-                    <RiImage2Fill size={20} color="#9eadba" />
+                  <div className={styles.containerPicture}>
+                    <RiImage2Fill className={styles.pictureIcon} />
                   </div>
                 </td>
                 <td>Nome do Filme</td>
                 <td>1</td>
                 <td>R$ 9,99</td>
                 <td>
-                  <RiDeleteBin7Fill size={20} color="#4b5c6b" />
+                  <RiDeleteBin7Fill className={styles.deleteIcon} />
                 </td>
               </tr>
             </tbody>
@@ -95,7 +95,7 @@ export default function Checkout() {
             </div>
 
             <Link to="/checkout" className={styles.navigationCheckout}>
-              Finalizar Compra
+              Finalizar
             </Link>
           </div>
         </aside>
