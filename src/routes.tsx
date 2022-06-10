@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
 
-function RoutesApp() {
+export default function RoutesApp() {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,5 +14,3 @@ function RoutesApp() {
     </BrowserRouter>
   );
 }
-
-export default RoutesApp;

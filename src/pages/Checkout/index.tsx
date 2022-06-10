@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { RiDeleteBin7Fill, RiImage2Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import ModalPurchase from "../../components/ModalPurchase";
+import { PurchaseContext } from "../../contexts/PurchaseContext";
 
 import styles from "../../styles/Checkout.module.scss";
 
 export default function Checkout() {
+  const { openModal, isModalOpen } = useContext(PurchaseContext);
+
   return (
     <div id={styles.checkout}>
       <div className={styles.container}>
@@ -94,12 +98,14 @@ export default function Checkout() {
               <span className={styles.totalValue}>R$ 19,98</span>
             </div>
 
-            <Link to="/checkout" className={styles.navigationCheckout}>
+            <button className={styles.finishCheckout} onClick={openModal}>
               Finalizar
-            </Link>
+            </button>
           </div>
         </aside>
       </div>
+
+      {isModalOpen && <ModalPurchase />}
     </div>
   );
 }

@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import {
   RiHeart3Fill,
   RiShoppingCart2Fill,
   RiSearchLine,
 } from "react-icons/ri";
+import { PurchaseContext } from "../../contexts/PurchaseContext";
 
 import styles from "./styles.module.scss";
 
 export default function Header() {
+  const { openCart, openFavorite } = useContext(PurchaseContext);
+
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -21,10 +25,10 @@ export default function Header() {
         </div>
 
         <div className={styles.iconsContainer}>
-          <button>
+          <button onClick={openFavorite}>
             <RiHeart3Fill className={styles.heartIcon} />
           </button>
-          <button>
+          <button onClick={openCart}>
             <span className={styles.notifyCart}>3</span>
             <RiShoppingCart2Fill className={styles.cartIcon} />
           </button>
