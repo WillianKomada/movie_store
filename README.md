@@ -64,6 +64,6 @@ $ yarn start
 
 [ ] Input de pesquisa <br />
 [ ] Botão de carrinho no favoritos
-
+[ ] Exibir nome do input no modal
 
 ---
