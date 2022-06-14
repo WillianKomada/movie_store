@@ -19,6 +19,8 @@
 <p>O projeto foi desenvolvido utilizando as seguintes tecnologias 🤓:</p>
 
 - [ReactJS](https://reactjs.org)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SASS](https://sass-lang.com/)
 - [TMDB](https://developers.themoviedb.org/3/getting-started/introduction)
 
 ---
