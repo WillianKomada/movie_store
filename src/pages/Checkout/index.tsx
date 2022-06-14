@@ -24,7 +24,7 @@ export default function Checkout() {
             <InputMask mask="(99) 99999-9999" placeholder="Celular" />
             </div>
 
-            <input type="text" placeholder="E-mail" />
+            <input type="email" placeholder="E-mail" />
 
             <div className={styles.groupInput}>
             <InputMask mask="99999-999" placeholder="CEP" />
