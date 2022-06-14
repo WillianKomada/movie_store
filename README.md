@@ -62,7 +62,7 @@ $ yarn start
 
 ## 🚧 Em progresso
 
-[ ] Input de pesquisa </ br>
+[ ] Input de pesquisa <br />
 [ ] Botão de carrinho no favoritos
 
 
