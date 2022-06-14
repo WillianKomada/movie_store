@@ -57,6 +57,7 @@ $ yarn start
 <img src="https://ik.imagekit.io/cucgno2zqys/favmovie_dBFu_YedD.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239339948" alt="Favorite Movie">
 <img src="https://ik.imagekit.io/cucgno2zqys/checkout_E-yZ7K7yF.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239329697" alt="Purchase">
 <img src="https://ik.imagekit.io/cucgno2zqys/modalmovie_lM-KjpHp0.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239329890" alt="Modal">
+<img src="https://ik.imagekit.io/cucgno2zqys/notfound_hHEANet0K.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655240042958" alt="Page Not Found">
 
 ---
 
