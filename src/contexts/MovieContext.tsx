@@ -1,10 +1,10 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import api, { key } from "../services/api";
+import { saveMovie } from "../services/storeMovies";
 
 interface MovieContextData {
   movies: MovieProps[];
   addFavoriteMovie: (id: string) => void;
-  removeFavoriteMovie: (id: string) => void;
 }
 
 interface MovieProps {
@@ -34,7 +34,6 @@ export function MovieProvider({ children }: MovieProviderProps) {
       const response = await api.get(`/movie/popular?api_key=${key}`);
 
       setMovies(response.data.results);
-      console.log(response.data.results);
     } catch {
       console.log("Algo deu errado. Sinto muito!");
 
@@ -42,26 +41,14 @@ export function MovieProvider({ children }: MovieProviderProps) {
     }
   }
 
-  function addFavoriteMovie(id: string) {
-    const movieFavorite = movies.map((movie) => {
-      return movie.id === id ? { ...movie, favoriteMovie: true } : movie;
-    });
+  async function addFavoriteMovie(id: string) {
+    const response = await api.get(`/movie/${id}?api_key=${key}`);
 
-    setMovies(movieFavorite);
-  }
-
-  function removeFavoriteMovie(id: string) {
-    const movieFavorite = movies.map((movie) => {
-      return movie.id === id ? { ...movie, favoriteMovie: false } : movie;
-    });
-
-    setMovies(movieFavorite);
+    saveMovie("@MovieStore", response.data);
   }
 
   return (
-    <MovieContext.Provider
-      value={{ movies, addFavoriteMovie, removeFavoriteMovie }}
-    >
+    <MovieContext.Provider value={{ movies, addFavoriteMovie }}>
       {children}
     </MovieContext.Provider>
   );
