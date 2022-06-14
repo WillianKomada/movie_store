@@ -16,6 +16,7 @@ export default function Home() {
     handleDeleteCartMovie,
     handleClearMovieStorage,
     handleClearMovieCartStorage,
+    AddMovieToCart,
   } = useContext(MovieContext);
 
   const image_path = "https://image.tmdb.org/t/p/w500";
@@ -104,7 +105,7 @@ export default function Home() {
 
                       <span>R$ 79,99</span>
 
-                      <button>
+                      <button onClick={() => AddMovieToCart(movie.id)}>
                         <RiShoppingCart2Fill className={styles.cartIcon} />
                       </button>
 

@@ -26,7 +26,6 @@ export function PurchaseProvider({ children }: PurchaseProviderProps) {
 
   const { handleClearMovieCartStorage } = useContext(MovieContext);
 
-
   function handleOpenModal() {
     setIsModalOpen(true);
   }

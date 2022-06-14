@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import ModalPurchase from "../../components/ModalPurchase";
 import { PurchaseContext } from "../../contexts/PurchaseContext";
@@ -8,6 +8,8 @@ import styles from "../../styles/Checkout.module.scss";
 import { MovieContext } from "../../contexts/MovieContext";
 
 export default function Checkout() {
+  const [name, setName] = useState("");
+
   const { handleOpenModal, isModalOpen } = useContext(PurchaseContext);
   const { myCartMovies, handleDeleteCartMovie } = useContext(MovieContext);
 
@@ -20,7 +22,12 @@ export default function Checkout() {
           <h1 className={styles.titleCheckout}>Finalizar Compra</h1>
 
           <form>
-            <input type="text" placeholder="Nome Completo" />
+            <input
+              type="text"
+              placeholder="Nome Completo"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
 
             <div className={styles.groupInput}>
               <InputMask mask="999.999.999-99" placeholder="CPF" />
@@ -97,7 +104,7 @@ export default function Checkout() {
         </aside>
       </div>
 
-      {isModalOpen && <ModalPurchase />}
+      {isModalOpen && <ModalPurchase name={name} />}
     </div>
   );
 }
