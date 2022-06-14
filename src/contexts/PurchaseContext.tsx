@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
+import { MovieContext } from "./MovieContext";
 
 interface PurchaseContextData {
   handleOpenModal: () => void;
@@ -23,12 +24,17 @@ export function PurchaseProvider({ children }: PurchaseProviderProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false);
 
+  const { handleClearMovieCartStorage } = useContext(MovieContext);
+
+
   function handleOpenModal() {
     setIsModalOpen(true);
   }
 
   function handleCloseModal() {
     setIsModalOpen(false);
+
+    handleClearMovieCartStorage();
   }
 
   function handleOpenCart() {
