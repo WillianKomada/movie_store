@@ -14,7 +14,6 @@ export default function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        {/* <img src="" alt="LOGO" /> */}
         <h2 style={{ color: "#fff" }}>LOGO</h2>
 
         <div className={styles.searchContainer}>

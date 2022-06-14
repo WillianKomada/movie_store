@@ -51,7 +51,7 @@ export function MovieProvider({ children }: MovieProviderProps) {
   async function addFavoriteMovie(id: string) {
     const response = await api.get(`/movie/${id}?api_key=${key}`);
 
-    saveMovie("@MovieStore", response);
+    saveMovie("@MovieStore", response.data);
   }
 
   return (

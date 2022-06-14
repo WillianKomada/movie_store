@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { RiHeartFill, RiStarSFill } from "react-icons/ri";
+import { format, parseISO } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import { MovieContext } from "../../contexts/MovieContext";
 
 import styles from "./styles.module.scss";
@@ -19,13 +21,18 @@ export default function CardMovie() {
 
               <RiHeartFill
                 className={styles.heartIcon}
-                onClick={() =>
-                  addFavoriteMovie(movie.id)
-                }
+                onClick={() => addFavoriteMovie(movie.id)}
               />
 
-              <img src={`${image_path}${movie.poster_path}`} alt={movie.title} />
-              <span className={styles.releaseDate}>{movie.release_date}</span>
+              <img
+                src={`${image_path}${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <span className={styles.releaseDate}>
+                {format(parseISO(movie.release_date), "dd 'de' MMMM',' yyyy", {
+                  locale: ptBR,
+                })}
+              </span>
             </div>
             <div className={styles.cardMovieInfos}>
               <p>{movie.title}</p>

@@ -25,6 +25,8 @@ export default function Home() {
 
   const { isCartOpen, isFavoriteOpen } = useContext(PurchaseContext);
 
+  const image_path = "https://image.tmdb.org/t/p/w500";
+
   useEffect(() => {
     async function getMovies() {
       const result = await getMoviesSave("@MovieStore");
@@ -36,9 +38,7 @@ export default function Home() {
   }, [myMovies]);
 
   async function handleDeleteMovie(id: string) {
-    const result = await removeMovie(myMovies, id);
-
-    setMyMovies(result);
+    await removeMovie(myMovies, id);
   }
 
   function handleClearMovieStorage() {
@@ -135,7 +135,10 @@ export default function Home() {
                   <ul key={movie.id}>
                     <li>
                       <div className={styles.containerPictureIcon}>
-                        <img src={movie.poster_path} alt="movie" />
+                        <img
+                          src={`${image_path}${movie.poster_path}`}
+                          alt="movie"
+                        />
                       </div>
 
                       <span className={styles.movieTitle}>{movie.title}</span>
