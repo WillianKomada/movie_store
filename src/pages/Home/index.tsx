@@ -6,12 +6,14 @@ import {
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import CardMovie from "../../components/CardMovie";
+import { MovieContext } from "../../contexts/MovieContext";
 import { PurchaseContext } from "../../contexts/PurchaseContext";
 
 import styles from "../../styles/Home.module.scss";
 
 export default function Home() {
   const { isCartOpen, isFavoriteOpen } = useContext(PurchaseContext);
+  const { movies, removeFavoriteMovie } = useContext(MovieContext);
 
   return (
     <>
@@ -98,61 +100,31 @@ export default function Home() {
 
                 <button>Esvaziar</button>
               </header>
-              <ul>
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
+              {movies.map((movie) => {
+                return (
+                  movie.favoriteMovie && (
+                    <ul key={movie.id}>
+                      <li>
+                        <div className={styles.containerPictureIcon}>
+                          <img src={movie.poster_path} alt="movie" />
+                        </div>
 
-                  <span>Nome do Filme</span>
+                        <span className={styles.movieTitle}>{movie.title}</span>
 
-                  <span>R$ 9,99</span>
+                        <span>R$ 79,99</span>
 
-                  <button>
-                    <RiShoppingCart2Fill className={styles.cartIcon} />
-                  </button>
+                        <button>
+                          <RiShoppingCart2Fill className={styles.cartIcon} />
+                        </button>
 
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
-
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
-
-                  <span>Nome do Filme</span>
-
-                  <span>R$ 9,99</span>
-
-                  <button>
-                    <RiShoppingCart2Fill className={styles.cartIcon} />
-                  </button>
-
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
-
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
-
-                  <span>Nome do Filme</span>
-
-                  <span>R$ 9,99</span>
-
-                  <button>
-                    <RiShoppingCart2Fill className={styles.cartIcon} />
-                  </button>
-
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
-              </ul>
+                        <button onClick={() => removeFavoriteMovie(movie.id)}>
+                          <RiDeleteBin7Fill className={styles.deleteIcon} />
+                        </button>
+                      </li>
+                    </ul>
+                  )
+                );
+              })}
             </div>
           </div>
         ) : null}

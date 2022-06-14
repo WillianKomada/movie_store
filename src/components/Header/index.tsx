@@ -9,7 +9,7 @@ import { PurchaseContext } from "../../contexts/PurchaseContext";
 import styles from "./styles.module.scss";
 
 export default function Header() {
-  const { openCart, openFavorite } = useContext(PurchaseContext);
+  const { handleOpenCart, handleOpenFavorite } = useContext(PurchaseContext);
 
   return (
     <header className={styles.headerContainer}>
@@ -25,10 +25,10 @@ export default function Header() {
         </div>
 
         <div className={styles.iconsContainer}>
-          <button onClick={openFavorite}>
+          <button onClick={handleOpenFavorite}>
             <RiHeart3Fill className={styles.heartIcon} />
           </button>
-          <button onClick={openCart}>
+          <button onClick={handleOpenCart}>
             <span className={styles.notifyCart}>3</span>
             <RiShoppingCart2Fill className={styles.cartIcon} />
           </button>

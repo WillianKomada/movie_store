@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { MovieProvider } from "./contexts/MovieContext";
 import { PurchaseProvider } from "./contexts/PurchaseContext";
 
 const root = ReactDOM.createRoot(
@@ -8,8 +9,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <PurchaseProvider>
-      <App />
-    </PurchaseProvider>
+    <MovieProvider>
+      <PurchaseProvider>
+        <App />
+      </PurchaseProvider>
+    </MovieProvider>
   </React.StrictMode>
 );

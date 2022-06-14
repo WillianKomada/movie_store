@@ -6,7 +6,7 @@ import { PurchaseContext } from "../../contexts/PurchaseContext";
 import styles from "../../styles/Checkout.module.scss";
 
 export default function Checkout() {
-  const { openModal, isModalOpen } = useContext(PurchaseContext);
+  const { handleOpenModal, isModalOpen } = useContext(PurchaseContext);
 
   return (
     <div id={styles.checkout}>
@@ -98,7 +98,7 @@ export default function Checkout() {
               <span className={styles.totalValue}>R$ 19,98</span>
             </div>
 
-            <button className={styles.finishCheckout} onClick={openModal}>
+            <button className={styles.finishCheckout} onClick={handleOpenModal}>
               Finalizar
             </button>
           </div>

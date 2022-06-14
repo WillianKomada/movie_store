@@ -1,14 +1,14 @@
 import { createContext, ReactNode, useState } from "react";
 
 interface PurchaseContextData {
-  openModal: () => void;
-  closeModal: () => void;
+  handleOpenModal: () => void;
+  handleCloseModal: () => void;
   isModalOpen: boolean;
 
-  openCart: () => void;
+  handleOpenCart: () => void;
   isCartOpen: boolean;
 
-  openFavorite: () => void;
+  handleOpenFavorite: () => void;
   isFavoriteOpen: boolean;
 }
 
@@ -23,15 +23,15 @@ export function PurchaseProvider({ children }: PurchaseProviderProps) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false);
 
-  function openModal() {
+  function handleOpenModal() {
     setIsModalOpen(true);
   }
 
-  function closeModal() {
+  function handleCloseModal() {
     setIsModalOpen(false);
   }
 
-  function openCart() {
+  function handleOpenCart() {
     if (isFavoriteOpen) {
       setIsFavoriteOpen(false);
 
@@ -41,7 +41,7 @@ export function PurchaseProvider({ children }: PurchaseProviderProps) {
     setIsCartOpen(!isCartOpen);
   }
 
-  function openFavorite() {
+  function handleOpenFavorite() {
     if (isCartOpen) {
       setIsCartOpen(false);
 
@@ -54,13 +54,13 @@ export function PurchaseProvider({ children }: PurchaseProviderProps) {
   return (
     <PurchaseContext.Provider
       value={{
-        openModal,
-        closeModal,
+        handleOpenModal,
+        handleCloseModal,
         isModalOpen,
-        openCart,
+        handleOpenCart,
 
         isCartOpen,
-        openFavorite,
+        handleOpenFavorite,
 
         isFavoriteOpen,
       }}
