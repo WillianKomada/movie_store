@@ -4,6 +4,7 @@
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Como baixar o projeto](#-como-baixar-o-projeto-através-do-git-bash)
 - [Imagens do Projeto](#-imagens-do-projeto)
+- [Em progresso...](#-em-progresso)
 
 ## 📝 Sobre
 
@@ -56,5 +57,11 @@ $ yarn start
 <img src="https://ik.imagekit.io/cucgno2zqys/favmovie_dBFu_YedD.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239339948" alt="Favorite Movie">
 <img src="https://ik.imagekit.io/cucgno2zqys/checkout_E-yZ7K7yF.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239329697" alt="Purchase">
 <img src="https://ik.imagekit.io/cucgno2zqys/modalmovie_lM-KjpHp0.PNG?ik-sdk-version=javascript-1.4.3&updatedAt=1655239329890" alt="Modal">
+
+---
+
+## 🚧 Em progresso
+
+[] Input search
 
 ---
