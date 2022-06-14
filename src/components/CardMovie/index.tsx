@@ -7,6 +7,8 @@ import styles from "./styles.module.scss";
 export default function CardMovie() {
   const { movies, addFavoriteMovie } = useContext(MovieContext);
 
+  const image_path = "https://image.tmdb.org/t/p/w500";
+
   return (
     <main className={styles.mainContainer}>
       {movies.map((movie) => {
@@ -22,8 +24,8 @@ export default function CardMovie() {
                 }
               />
 
-              <img src={movie.poster_path} alt={movie.title} />
-              <span>{movie.release_date}</span>
+              <img src={`${image_path}${movie.poster_path}`} alt={movie.title} />
+              <span className={styles.releaseDate}>{movie.release_date}</span>
             </div>
             <div className={styles.cardMovieInfos}>
               <p>{movie.title}</p>

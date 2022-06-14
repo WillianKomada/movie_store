@@ -27,6 +27,7 @@ export function MovieProvider({ children }: MovieProviderProps) {
 
   useEffect(() => {
     loadMovies();
+    loadImagesMovies();
   }, []);
 
   async function loadMovies() {
@@ -41,10 +42,16 @@ export function MovieProvider({ children }: MovieProviderProps) {
     }
   }
 
+  async function loadImagesMovies() {
+    const response = await api.get(`/configuration?api_key=${key}`);
+
+    console.log(response.data);
+  }
+
   async function addFavoriteMovie(id: string) {
     const response = await api.get(`/movie/${id}?api_key=${key}`);
 
-    saveMovie("@MovieStore", response.data);
+    saveMovie("@MovieStore", response);
   }
 
   return (
