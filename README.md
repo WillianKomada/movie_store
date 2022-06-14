@@ -66,7 +66,7 @@ $ yarn start
 ## 🚧 Em progresso
 
 [ ] Input de pesquisa <br />
-[ ] Botão de carrinho no favoritos <br />
-[ ] Exibir nome do input no modal
+[X] Botão de carrinho no favoritos <br />
+[X] Exibir nome do input no modal
 
 ---
