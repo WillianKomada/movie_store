@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { RiDeleteBin7Fill, RiImage2Fill } from "react-icons/ri";
 import ModalPurchase from "../../components/ModalPurchase";
 import { PurchaseContext } from "../../contexts/PurchaseContext";
+import InputMask from "react-input-mask";
 
 import styles from "../../styles/Checkout.module.scss";
 
@@ -15,17 +16,18 @@ export default function Checkout() {
           <h1 className={styles.titleCheckout}>Finalizar Compra</h1>
 
           <form>
+            
             <input type="text" placeholder="Nome Completo" />
 
             <div className={styles.groupInput}>
-              <input type="text" placeholder="CPF" />
-              <input type="text" placeholder="Celular" />
+            <InputMask mask="999.999.999-99" placeholder="CPF" />
+            <InputMask mask="(99) 99999-9999" placeholder="Celular" />
             </div>
 
             <input type="text" placeholder="E-mail" />
 
             <div className={styles.groupInput}>
-              <input type="text" placeholder="CEP" />
+            <InputMask mask="99999-999" placeholder="CEP" />
               <input type="text" placeholder="Endereço" />
             </div>
 

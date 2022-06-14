@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 
 import { PurchaseContext } from "../../contexts/PurchaseContext";
 import styles from "./styles.module.scss";
@@ -12,9 +11,13 @@ export default function ModalPurchase() {
       <div className={styles.container}>
         <header>Obrigado Willian Komada</header>
         <p>Sua compra foi finalizada com sucesso!</p>
-        <Link to="/" className={styles.finishPurchase} onClick={handleCloseModal}>
+        <a
+          href="/"
+          className={styles.finishPurchase}
+          onClick={handleCloseModal}
+        >
           Ir para loja
-        </Link>
+        </a>
       </div>
     </div>
   );
