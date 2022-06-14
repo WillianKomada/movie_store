@@ -2,7 +2,7 @@
 
 - [Sobre](#-sobre)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Como baixar o projeto](#-como-baixar-o-projeto)
+- [Como baixar o projeto](#-como-baixar-o-projeto-através-do-git-bash)
 - [Imagens do Projeto](#-imagens-do-projeto)
 
 ## 📝 Sobre
