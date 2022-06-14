@@ -1,10 +1,22 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import api, { key } from "../services/api";
-import { saveMovie } from "../services/storeMovies";
+import {
+  getMoviesSave,
+  removeCartMovie,
+  removeMovie,
+  saveMovie,
+} from "../services/storeMovies";
 
 interface MovieContextData {
   movies: MovieProps[];
+  myMovies: MovieProps[];
+  myCartMovies: MovieProps[];
   addFavoriteMovie: (id: string) => void;
+  AddMovieToCart: (id: string) => void;
+  handleDeleteMovie: (id: string) => void;
+  handleDeleteCartMovie: (id: string) => void;
+  handleClearMovieStorage: () => void;
+  handleClearMovieCartStorage: () => void;
 }
 
 interface MovieProps {
@@ -13,7 +25,6 @@ interface MovieProps {
   poster_path: string;
   release_date: string;
   vote_average: string;
-  favoriteMovie: boolean;
 }
 
 interface MovieProviderProps {
@@ -24,11 +35,25 @@ export const MovieContext = createContext({} as MovieContextData);
 
 export function MovieProvider({ children }: MovieProviderProps) {
   const [movies, setMovies] = useState<MovieProps[]>([]);
+  const [myMovies, setMyMovies] = useState<MovieProps[]>([]);
+  const [myCartMovies, setMyCartMovies] = useState<MovieProps[]>([]);
 
   useEffect(() => {
     loadMovies();
     loadImagesMovies();
   }, []);
+
+  useEffect(() => {
+    async function getMovies() {
+      const resultMovieStore = await getMoviesSave("@MovieStore");
+      const resultMovieCartStore = await getMoviesSave("@MovieCartStore");
+
+      setMyMovies(resultMovieStore);
+      setMyCartMovies(resultMovieCartStore);
+    }
+
+    getMovies();
+  }, [myMovies, myCartMovies]);
 
   async function loadMovies() {
     try {
@@ -43,9 +68,7 @@ export function MovieProvider({ children }: MovieProviderProps) {
   }
 
   async function loadImagesMovies() {
-    const response = await api.get(`/configuration?api_key=${key}`);
-
-    console.log(response.data);
+    await api.get(`/configuration?api_key=${key}`);
   }
 
   async function addFavoriteMovie(id: string) {
@@ -54,8 +77,42 @@ export function MovieProvider({ children }: MovieProviderProps) {
     saveMovie("@MovieStore", response.data);
   }
 
+  async function AddMovieToCart(id: string) {
+    const response = await api.get(`/movie/${id}?api_key=${key}`);
+
+    saveMovie("@MovieCartStore", response.data);
+  }
+
+  async function handleDeleteMovie(id: string) {
+    await removeMovie(myMovies, id);
+  }
+
+  async function handleDeleteCartMovie(id: string) {
+    await removeCartMovie(myCartMovies, id);
+  }
+
+  function handleClearMovieStorage() {
+    localStorage.removeItem("@MovieStore");
+  }
+
+  function handleClearMovieCartStorage() {
+    localStorage.removeItem("@MovieCartStore");
+  }
+
   return (
-    <MovieContext.Provider value={{ movies, addFavoriteMovie }}>
+    <MovieContext.Provider
+      value={{
+        movies,
+        myMovies,
+        myCartMovies,
+        addFavoriteMovie,
+        AddMovieToCart,
+        handleDeleteMovie,
+        handleDeleteCartMovie,
+        handleClearMovieStorage,
+        handleClearMovieCartStorage,
+      }}
+    >
       {children}
     </MovieContext.Provider>
   );

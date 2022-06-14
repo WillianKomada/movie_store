@@ -1,49 +1,24 @@
-import { useContext, useEffect, useState } from "react";
-import {
-  RiDeleteBin7Fill,
-  RiImage2Fill,
-  RiShoppingCart2Fill,
-} from "react-icons/ri";
+import { useContext } from "react";
+import { RiDeleteBin7Fill, RiShoppingCart2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import CardMovie from "../../components/CardMovie";
+import { MovieContext } from "../../contexts/MovieContext";
 import { PurchaseContext } from "../../contexts/PurchaseContext";
-
-import { getMoviesSave, removeMovie } from "../../services/storeMovies";
 
 import styles from "../../styles/Home.module.scss";
 
-interface MovieProps {
-  id: string;
-  title: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: string;
-}
-
 export default function Home() {
-  const [myMovies, setMyMovies] = useState<MovieProps[]>([]);
-
   const { isCartOpen, isFavoriteOpen } = useContext(PurchaseContext);
+  const {
+    myCartMovies,
+    myMovies,
+    handleDeleteMovie,
+    handleDeleteCartMovie,
+    handleClearMovieStorage,
+    handleClearMovieCartStorage,
+  } = useContext(MovieContext);
 
   const image_path = "https://image.tmdb.org/t/p/w500";
-
-  useEffect(() => {
-    async function getMovies() {
-      const result = await getMoviesSave("@MovieStore");
-
-      setMyMovies(result);
-    }
-
-    getMovies();
-  }, [myMovies]);
-
-  async function handleDeleteMovie(id: string) {
-    await removeMovie(myMovies, id);
-  }
-
-  function handleClearMovieStorage() {
-    localStorage.clear();
-  }
 
   return (
     <>
@@ -56,63 +31,47 @@ export default function Home() {
               <header className={styles.cartHeader}>
                 <h1>Meu Carrinho</h1>
 
-                <button>Esvaziar</button>
+                <button onClick={handleClearMovieCartStorage}>Esvaziar</button>
               </header>
               <ul>
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
+                {myCartMovies.map((cartMovie) => {
+                  return (
+                    <li key={cartMovie.id}>
+                      <div className={styles.containerPictureIcon}>
+                        <img
+                          src={`${image_path}${cartMovie.poster_path}`}
+                          alt="movie"
+                        />
+                      </div>
 
-                  <span>Nome do Filme</span>
+                      <span className={styles.movieTitle}>
+                        {cartMovie.title}
+                      </span>
 
-                  <span>1</span>
+                      <span>1</span>
 
-                  <span>R$ 9,99</span>
+                      <span>R$ 79,99</span>
 
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
-
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
-
-                  <span>Nome do Filme</span>
-
-                  <span>1</span>
-
-                  <span>R$ 9,99</span>
-
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
-
-                <li>
-                  <div className={styles.containerPictureIcon}>
-                    <RiImage2Fill size={20} color="#9eadba" />
-                  </div>
-
-                  <span>Nome do Filme</span>
-
-                  <span>1</span>
-
-                  <span>R$ 9,99</span>
-
-                  <button>
-                    <RiDeleteBin7Fill className={styles.deleteIcon} />
-                  </button>
-                </li>
+                      <button
+                        onClick={() => handleDeleteCartMovie(cartMovie.id)}
+                      >
+                        <RiDeleteBin7Fill className={styles.deleteIcon} />
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
             <div>
               <div className={styles.priceContainer}>
                 <span>Total:</span>
-                <span className={styles.totalValue}>R$ 19,98</span>
+                <span className={styles.totalValue}>
+                  {new Intl.NumberFormat("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(myCartMovies.length * 79.99)}
+                </span>
               </div>
 
               <Link to="/checkout" className={styles.navigationCheckout}>
@@ -130,10 +89,10 @@ export default function Home() {
 
                 <button onClick={handleClearMovieStorage}>Esvaziar</button>
               </header>
-              {myMovies.map((movie) => {
-                return (
-                  <ul key={movie.id}>
-                    <li>
+              <ul>
+                {myMovies.map((movie) => {
+                  return (
+                    <li key={movie.id}>
                       <div className={styles.containerPictureIcon}>
                         <img
                           src={`${image_path}${movie.poster_path}`}
@@ -153,9 +112,9 @@ export default function Home() {
                         <RiDeleteBin7Fill className={styles.deleteIcon} />
                       </button>
                     </li>
-                  </ul>
-                );
-              })}
+                  );
+                })}
+              </ul>
             </div>
           </div>
         ) : null}

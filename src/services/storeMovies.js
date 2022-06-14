@@ -29,3 +29,13 @@ export async function removeMovie(moviesStored, id) {
 
   return myMoviesStored;
 }
+
+export async function removeCartMovie(moviesStored, id) {
+  let myMoviesStored = moviesStored.filter((item) => {
+    return item.id !== id;
+  });
+
+  await localStorage.setItem("@MovieCartStore", JSON.stringify(myMoviesStored));
+
+  return myMoviesStored;
+}

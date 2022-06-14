@@ -7,7 +7,7 @@ import { MovieContext } from "../../contexts/MovieContext";
 import styles from "./styles.module.scss";
 
 export default function CardMovie() {
-  const { movies, addFavoriteMovie } = useContext(MovieContext);
+  const { movies, addFavoriteMovie, AddMovieToCart } = useContext(MovieContext);
 
   const image_path = "https://image.tmdb.org/t/p/w500";
 
@@ -43,7 +43,7 @@ export default function CardMovie() {
               </div>
               <span>R$ 79,99</span>
             </div>
-            <button>Adicionar</button>
+            <button onClick={() => AddMovieToCart(movie.id)}>Adicionar</button>
           </div>
         );
       })}

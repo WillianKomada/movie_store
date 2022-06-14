@@ -4,12 +4,14 @@ import {
   RiShoppingCart2Fill,
   RiSearchLine,
 } from "react-icons/ri";
+import { MovieContext } from "../../contexts/MovieContext";
 import { PurchaseContext } from "../../contexts/PurchaseContext";
 
 import styles from "./styles.module.scss";
 
 export default function Header() {
   const { handleOpenCart, handleOpenFavorite } = useContext(PurchaseContext);
+  const { myCartMovies } = useContext(MovieContext);
 
   return (
     <header className={styles.headerContainer}>
@@ -28,7 +30,7 @@ export default function Header() {
             <RiHeart3Fill className={styles.heartIcon} />
           </button>
           <button onClick={handleOpenCart}>
-            <span className={styles.notifyCart}>3</span>
+            <span className={styles.notifyCart}>{myCartMovies.length}</span>
             <RiShoppingCart2Fill className={styles.cartIcon} />
           </button>
         </div>
