@@ -13,7 +13,7 @@ export default function ModalPurchase({ name }: ModalPurchaseProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.container}>
-        <header>Obrigado {name}!</header>
+        <header>Obrigado, {name? name : "senhor(a)"}!</header>
         <p>Sua compra foi finalizada com sucesso!</p>
         <a
           href="/"
